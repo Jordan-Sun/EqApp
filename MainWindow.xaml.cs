@@ -27,7 +27,7 @@ namespace EqApp
         private double[] attenuations = new double[BAND_NUM];
 
         // If the attenuation is fresh.
-        private bool newFile = true;
+        private string? fileName;
         // If the attenuation have been changed.
         private bool fileChanged = false;
         public MainWindow()
@@ -99,7 +99,7 @@ namespace EqApp
             }
             // File is no longer changed but new.
             fileChanged = false;
-            newFile = true;
+            fileName = null;
             // Update label contents.
             UpdateAllContents();
         }
@@ -109,7 +109,7 @@ namespace EqApp
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            SaveToFile();
+            SaveFile();
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
@@ -127,7 +127,7 @@ namespace EqApp
                 {
                     case MessageBoxResult.Yes:
                         // Save to file.
-                        SaveToFile();
+                        SaveFile();
                         break;
                     case MessageBoxResult.No:
                         break;
@@ -257,16 +257,36 @@ namespace EqApp
         }
         private void OpenFile()
         {
+            // Configure open file dialog box
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.FileName = "Attenuations";
+            dialog.DefaultExt = ".eqdat";
+            dialog.Filter = "Equalizer Data File (.eqdat)|*.eqdat";
+
+            // Show open file dialog box
+            bool? dialogResult = dialog.ShowDialog();
+
+            // Process open file dialog box results
+            if (dialogResult == true)
+            {
+                // Open document
+                string filename = dialog.FileName;
+                OpenFileNamed(filename);
+            }
+        }
+
+        private void OpenFileNamed(string filename)
+        {
             try
             {
                 // Read from eqdat file.
-                string[] attenuationStrings = System.IO.File.ReadAllLines("attenuations.eqdat");
+                string[] attenuationStrings = System.IO.File.ReadAllLines(filename);
                 // Check number of lines
                 int len = attenuationStrings.Length;
                 if (len != BAND_NUM)
                 {
                     // Incorrect file length.
-                    string messageBoxText = "Error: incorrect file length, expected: <" + BAND_NUM +">, was: <" + len + ">.";
+                    string messageBoxText = "Error: incorrect file length, expected: <" + BAND_NUM + ">, was: <" + len + ">.";
                     string caption = "Error";
                     MessageBoxButton button = MessageBoxButton.OK;
                     MessageBoxImage icon = MessageBoxImage.Error;
@@ -283,7 +303,7 @@ namespace EqApp
                     if (!(Double.TryParse(attenuationStrings[i], out attenuationBuf[i])))
                     {
                         // Incorrect file content.
-                        string messageBoxText = "Error: incorrect file content at line <" + i +">.";
+                        string messageBoxText = "Error: incorrect file content at line <" + i + ">.";
                         string caption = "Error";
                         MessageBoxButton button = MessageBoxButton.OK;
                         MessageBoxImage icon = MessageBoxImage.Error;
@@ -296,7 +316,7 @@ namespace EqApp
                 attenuations = attenuationBuf;
                 // File is no longer changed nor new.
                 fileChanged = false;
-                newFile = false;
+                fileName = filename;
                 // Update label contents.
                 UpdateAllContents();
                 // Finished opening file.
@@ -315,10 +335,30 @@ namespace EqApp
                 return;
             }
         }
-        private void SaveToFile()
+
+        private void SaveFile()
         {
+            if (fileName == null)
+            {
+                // Configure save file dialog box
+                var dialog = new Microsoft.Win32.SaveFileDialog();
+                dialog.FileName = "Attenuations";
+                dialog.DefaultExt = ".eqdat";
+                dialog.Filter = "Equalizer Data File (.eqdat)|*.eqdat";
+
+                // Show save file dialog box
+                bool? result = dialog.ShowDialog();
+
+                // Process save file dialog box results
+                if (result == true)
+                {
+                    // Save document
+                    fileName = dialog.FileName;
+                }
+            }
+
             // Check if file has been changed or is new
-            if (fileChanged || newFile)
+            if (fileChanged)
             {
                 // Convert all attenuations to strings.
                 string[] attenuationStrings = new string[BAND_NUM];
@@ -328,10 +368,10 @@ namespace EqApp
                 }
                 // File is no longer changed nor new.
                 fileChanged = false;
-                newFile = false;
                 // Write to eqdat file.
-                File.WriteAllLines("attenuations.eqdat", attenuationStrings);
+                File.WriteAllLines(fileName, attenuationStrings);
             }
         }
+
     }
 }

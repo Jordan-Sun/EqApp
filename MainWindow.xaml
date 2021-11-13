@@ -9,11 +9,11 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" />
-                <MenuItem Header="_Open" />
-                <MenuItem Header="_Save" />
+                <MenuItem Header="_New" Click="New_Click"/>
+                <MenuItem Header="_Open" Click="Open_Click" />
+                <MenuItem Header="_Save" Click="Save_Click" />
                 <Separator />
-                <MenuItem Header="_Exit" />
+                <MenuItem Header="_Exit" Click="Exit_Click" />
             </MenuItem>
         </Menu>
 
@@ -48,7 +48,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="0">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider0Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider0" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider0ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider0" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider0ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -60,7 +60,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="1">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider1Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider1" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider1ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider1" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider1ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -72,7 +72,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="2">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider2Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider2" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider2ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider2" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider2ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -84,7 +84,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="3">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider3Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider3" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider3ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider3" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider3ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -96,7 +96,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="4">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider4Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider4" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider4ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider4" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider4ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -108,7 +108,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="5">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider5Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider5" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider5ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider5" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider5ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -120,7 +120,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="6">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider6Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider6" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider6ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider6" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider6ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -132,7 +132,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="7">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider7Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider7" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider7ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider7" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider7ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -144,7 +144,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="8">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider8Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider8" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider8ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider8" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider8ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -156,7 +156,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="9">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider9Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider9" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider9ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider9" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider9ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -168,7 +168,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="10">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider10Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider10" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider10ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider10" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider10ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -180,7 +180,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="11">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider11Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider11" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider11ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider11" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider11ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 
@@ -192,7 +192,7 @@
                 <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2" Grid.Row="1" Grid.Column="12">
                     <StackPanel VerticalAlignment="Center">
                         <Label  x:Name="Slider12Label" Margin="8" FontSize="16" HorizontalAlignment="Center">0.00</Label>
-                        <Slider x:Name="Slider12" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider12ValueChanged" Maximum="10"/>
+                        <Slider x:Name="Slider12" Height="256" Orientation="Vertical" HorizontalAlignment="Center" ValueChanged="Slider12ValueChanged" Maximum="1"/>
                     </StackPanel>
                 </Border>
 

@@ -128,17 +128,15 @@ namespace EqApp
                     case MessageBoxResult.Yes:
                         // Save to file.
                         SaveToFile();
-                        // Successfully completed program.
-                        Environment.Exit(0);
                         break;
                     case MessageBoxResult.No:
-                        // Successfully completed program.
-                        Environment.Exit(0);
                         break;
                     default:
-                        break;
+                        return;
                 }
             }
+            // Successfully completed program.
+            Environment.Exit(0);
         }
 
         /// <summary>

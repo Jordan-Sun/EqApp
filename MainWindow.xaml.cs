@@ -97,11 +97,11 @@ namespace EqApp
             {
                 attenuations[i] = 0;
             }
+            // Update label contents.
+            UpdateAllContents();
             // File is no longer changed but new.
             fileChanged = false;
             fileName = null;
-            // Update label contents.
-            UpdateAllContents();
         }
         private void Open_Click(object sender, RoutedEventArgs e)
         {
@@ -314,11 +314,11 @@ namespace EqApp
                     }
                 }
                 attenuations = attenuationBuf;
+                // Update label contents.
+                UpdateAllContents();
                 // File is no longer changed nor new.
                 fileChanged = false;
                 fileName = filename;
-                // Update label contents.
-                UpdateAllContents();
                 // Finished opening file.
                 return;
             }

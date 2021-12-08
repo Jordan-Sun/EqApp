@@ -30,9 +30,16 @@ namespace EqApp
         private string? fileName;
         // If the attenuation have been changed.
         private bool fileChanged = false;
+
+        // Serial com
+        private SerialCom EqCom = new SerialCom();
+        // If the app should auto send new atten
+        private bool autoSendOn = false;
+
         public MainWindow()
         {
             InitializeComponent();
+            _ = ConvertAttenuations(attenuations);
         }
 
         /// <summary>
@@ -138,6 +145,31 @@ namespace EqApp
             // Successfully completed program.
             Environment.Exit(0);
         }
+        private void Select_Click(object sender, RoutedEventArgs e)
+        {
+            // Show new window.
+            SelectPort spw = new SelectPort();
+            // Give it the serial com
+            spw.EqCom = EqCom;
+            spw.Show();
+        }
+        private void Send_Click(object sender, RoutedEventArgs e)
+        {
+            // Disable auto send.
+            autoSendOn = false;
+            AutoSendButton.IsChecked = false;
+            // Send attenuations.
+            SendAttenuations();
+        }
+
+
+        private void Auto_Send_Click(object sender, RoutedEventArgs e)
+        {
+            // Toggle auto send.
+            autoSendOn = !autoSendOn;
+            AutoSendButton.IsChecked = autoSendOn;
+        }
+
 
         /// <summary>
         /// Helper Functions
@@ -150,6 +182,15 @@ namespace EqApp
             UpdateLabelContentFor(bandNo);
             // File has been changed.
             fileChanged = true;
+            // If auto send, send.
+            if (autoSendOn)
+            {
+                SendAttenuations();
+            }
+            else
+            {
+                _ = ConvertAttenuations(attenuations);
+            }
         }
         private void UpdateLabelContentFor(int bandNo)
         {
@@ -271,7 +312,10 @@ namespace EqApp
             {
                 // Open document
                 string filename = dialog.FileName;
-                OpenFileNamed(filename);
+                if (fileName != null)
+                {
+                    OpenFileNamed(filename);
+                }
             }
         }
 
@@ -369,8 +413,37 @@ namespace EqApp
                 // File is no longer changed nor new.
                 fileChanged = false;
                 // Write to eqdat file.
-                File.WriteAllLines(fileName, attenuationStrings);
+                if (fileName != null)
+                {
+                    File.WriteAllLines(fileName, attenuationStrings);
+                }
             }
+        }
+        private void SendAttenuations()
+        {
+            string data = ConvertAttenuations(attenuations);
+            EqCom.Send(data);
+        }
+        public string ConvertAttenuations(double[] atten)
+        {
+            short intAtten;
+            char[] dataAtten = new char[2 * atten.Length];
+            string readableData = "";
+
+            for (int i = 0; i < atten.Length; ++i)
+            {
+                intAtten = Convert.ToInt16(atten[i] * 16384.0);
+                dataAtten[2 * i] = Convert.ToChar(intAtten >> 8);
+                dataAtten[2 * i + 1] = Convert.ToChar(intAtten);
+                readableData += intAtten.ToString("X") + " ";
+            }
+            if (SerialOutput != null)
+            {
+                SerialOutput.Content = readableData;
+            }
+            string data = new string(dataAtten);
+
+            return data;
         }
 
     }

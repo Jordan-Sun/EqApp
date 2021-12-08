@@ -13,5 +13,7 @@ namespace EqApp
     /// </summary>
     public partial class App : Application
     {
+        private SerialCom sc = new SerialCom();
+
     }
 }

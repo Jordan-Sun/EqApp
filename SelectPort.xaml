@@ -1,0 +1,50 @@
+﻿<Window x:Class="EqApp.SelectPort"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EqApp"
+        mc:Ignorable="d"
+        Title="SelectPort" Height="300" Width="200">
+
+    <Border CornerRadius="8" BorderBrush="Black" Background="FloralWhite" BorderThickness="2">
+        <Grid  Margin="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
+                <Label>Port Name</Label>
+                <ComboBox x:Name="NameBox"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                <Label>Baud Rate</Label>
+                <ComboBox x:Name="RateBox" SelectedIndex="0">
+                    <ComboBoxItem Content="9600"></ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
+                <Label>Stop Bit</Label>
+                <ComboBox x:Name="StopBitBox" SelectedIndex="0">
+                    <ComboBoxItem Content="1"></ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">
+                <Label>Parity</Label>
+                <ComboBox x:Name="ParityBox" SelectedIndex="0">
+                    <ComboBoxItem Content="None"></ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <Button Margin="8" Grid.Row="4" Grid.Column="0" Click="OK_Click">OK</Button>
+
+        </Grid>
+    </Border>
+</Window>
